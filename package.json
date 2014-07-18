@@ -1,0 +1,25 @@
+{
+  "name": "connect-send-error",
+  "version": "1.0.0",
+  "description": "Adds the response.error() middleware to connect and connect-like http stacks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coolaj86/connect-send-error.git"
+  },
+  "keywords": [
+    "connect",
+    "send",
+    "error",
+    "json"
+  ],
+  "author": "AJ ONeal <coolaj86@gmail.com> (http://coolaj86.com/)",
+  "license": "Apache2",
+  "bugs": {
+    "url": "https://github.com/coolaj86/connect-send-error/issues"
+  },
+  "homepage": "https://github.com/coolaj86/connect-send-error"
+}
