@@ -1,6 +1,6 @@
 {
   "name": "connect-send-error",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adds the response.error() middleware to connect and connect-like http stacks.",
   "main": "index.js",
   "scripts": {

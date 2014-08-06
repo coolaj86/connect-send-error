@@ -18,7 +18,7 @@ module.exports.error = function (opts) {
 
     code = code || 'UKN';
     message = message || (errors[code] && errors[code].message) || 'Unknown error occurred';
-    statusCode = statusCode || (errors[code] && errors[code].statusCode) || '500';
+    statusCode = statusCode || (errors[code] && errors[code].statusCode) || '200';
     data = { error: { code: code, message: message } };
 
     res.setHeader('Content-Type', 'application/json');
