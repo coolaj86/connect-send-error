@@ -19,11 +19,14 @@ module.exports.error = function (opts) {
     code = code || 'UKN';
     message = message || (errors[code] && errors[code].message) || 'Unknown error occurred';
     statusCode = statusCode || (errors[code] && errors[code].statusCode) || '200';
-    data = { error: { code: code, message: message } };
+    data = { code: code, message: message };
 
     res.setHeader('Content-Type', 'application/json');
-    res.statusCode = statusCode;
-    res.end(JSON.stringify(data, null, '  '));
+    //res.statusCode = statusCode;
+    if (code && 'object' === typeof code) {
+      data = code;
+    }
+    res.end(JSON.stringify({ error: data }, null, '  '));
   }
 
   function attach(req, res, next) {
