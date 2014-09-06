@@ -6,6 +6,17 @@ module.exports.error = function (opts) {
   var errors = opts.codes || {}
     ;
 
+  /*
+  function getName(obj) {
+    var funcNameRegex = /function (.{1,})\(/
+      , results = (funcNameRegex).exec((obj).constructor.toString())
+      ;
+
+   return (results && results.length > 1) ? results[1] : "";
+  }
+  // 'Error' === getName(new Error('foo'))
+  */
+
   function sendResponse(code, message, statusCode) {
     /*jshint validthis:true*/
     var res = this
@@ -24,7 +35,15 @@ module.exports.error = function (opts) {
     res.setHeader('Content-Type', 'application/json');
     //res.statusCode = statusCode;
     if (code && 'object' === typeof code) {
-      data = code;
+      if (code.error) {
+        code = code.error;
+      }
+      if (/message/.test(JSON.stringify(code))) {
+        // '{}' !== JSON.stringify(code)
+        data = code;
+      } else {
+        data = { type: code.type, name: code.name, message: code.message || code.toString() };
+      }
     }
     res.end(JSON.stringify({ error: data }, null, '  '));
   }
