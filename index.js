@@ -3,14 +3,12 @@
 module.exports.error = function (opts) {
   opts = opts || {};
 
-  var errors = opts.codes || {}
-    ;
+  var errors = opts.codes || {};
 
   /*
   function getName(obj) {
-    var funcNameRegex = /function (.{1,})\(/
-      , results = (funcNameRegex).exec((obj).constructor.toString())
-      ;
+    var funcNameRegex = /function (.{1,})\(/;
+    var results = (funcNameRegex).exec((obj).constructor.toString());
 
    return (results && results.length > 1) ? results[1] : "";
   }
@@ -19,9 +17,9 @@ module.exports.error = function (opts) {
 
   function sendResponse(code, message, statusCode) {
     /*jshint validthis:true*/
-    var res = this
-      , data
-      ;
+    var res = this;
+    var data;
+    var result;
 
     if (!res) {
       throw new Error('You called `error()`, detatched send from the response object');
@@ -45,7 +43,9 @@ module.exports.error = function (opts) {
         data = { type: code.type, name: code.name, message: code.message || code.toString() };
       }
     }
-    res.end(JSON.stringify({ error: data }, null, '  '));
+
+    result = JSON.stringify({ error: data }, null, '  ');
+    res.end(result);
   }
 
   function attach(req, res, next) {
